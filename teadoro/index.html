@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Static/Css/style.css">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="icon" type="image/png" href="Static/Img/Corazon_Icon.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Comic+Relief:wght@400;700&family=Courgette&family=Delius+Swash+Caps&family=DynaPuff:wght@400..700&family=Open+Sans&display=swap"
+        rel="stylesheet">
+    <title>Ola mi niña</title>
+
+    <style>
+        body {
+            background-image: url('Static/Img/img_fondo_papel_arrugado.jpg');
+        }
+
+        #btn-no {
+            transition: transform 0.05s ease;
+        }
+
+        /* Diferentes posiciones posibles */
+        #btn-no.pos1 {
+            transform: translateX(-0px);
+        }
+
+        #btn-no.pos2 {
+            transform: translateX(120px);
+        }
+
+        #btn-no.pos3 {
+            transform: translateY(120px);
+        }
+
+        #btn-no.pos4 {
+            transform: translateY(-220px);
+        }
+
+        #btn-no.pos5 {
+            transform: translateX(-210px);
+        }
+
+        #btn-no.pos6 {
+            transform: translateX(220px);
+        }
+
+        #btn-no.pos7 {
+            transform: translateY(0px);
+        }
+
+        #btn-no.pos8 {
+            transform: translateX(0px);
+        }
+
+        /* Overlay animación */
+        #overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 1s ease;
+            z-index: 9999;
+        }
+
+        /* Modos de color */
+        #overlay.rosa {
+            background-color: pink;
+        }
+
+        #overlay.negro {
+            background-color: black;
+        }
+
+        #overlay.active {
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <img src="Static/Img/cat_loveGif.gif" alt="Gatito de amor" class="imagen-centrada">
+        <div class="texto-especial mt-3">
+            <span class="texto-negro">HOLA</span>
+        </div>
+        <div class="texto-especial">
+            <span class="texto-azul">CIELITO MIO</span>
+        </div>
+    </div>
+
+    <div class="pregunta mt-2">
+        ¿Quieres leer la carta que hice para ti?
+    </div>
+
+    <div class="botones">
+        <!-- Botón SI -->
+        <button class="btn2 liquid" id="btn-si">
+            <span>Si</span>
+        </button>
+
+        <!-- Botón NO -->
+        <button class="btn3 liquid2 ms-3" id="btn-no">
+            <span>No</span>
+        </button>
+    </div>
+
+    <!-- Overlay para transición -->
+    <div id="overlay"></div>
+
+    <script>
+        const btnNo = document.getElementById("btn-no");
+        const btnSi = document.getElementById("btn-si");
+        const overlay = document.getElementById("overlay");
+        let moveIndex = 0;
+
+        // --- Botón NO se mueve ---
+        btnNo.addEventListener("mouseenter", () => {
+            btnNo.classList.remove("pos1", "pos2", "pos3", "pos4", "pos5", "pos6", "pos7", "pos8,");
+            moveIndex = (moveIndex + 1) % 8;
+            btnNo.classList.add(`pos${moveIndex + 1}`);
+        });
+
+        // --- Botón SI con overlay rosa ---
+        btnSi.addEventListener("click", (e) => {
+            e.preventDefault();
+            overlay.classList.add("rosa", "active");
+            setTimeout(() => {
+                window.location.href = "carta.html";
+            }, 1000);
+        });
+
+        // --- Botón NO con overlay negro ---
+        btnNo.addEventListener("click", (e) => {
+            e.preventDefault();
+            overlay.classList.add("negro", "active");
+            setTimeout(() => {
+                window.location.href = "dizqno.html";
+            }, 1000);
+        });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
